@@ -65,18 +65,4 @@ Here, $\sigma_t$ is the standard deviation of the closing prices between time $t
 
 $E[(X_t-\mu_t){X_s-\mu_s)}]$ is the covariance between spot price $X_s$ at time $s$ and spot price $X_t$ at time $t$.
 
----
-
-## Error Messages Produced by the Application
-
-**End date is earlier than start date, or start date is blank.** --- This message occurs when the end date in the `Date Range` field is either earlier than the start date, or the start date is blank.
-
-**End date took a leap forward in time!** --- This message occurs when the end date is later than the present date.
-
-**The date range is less the 14 days. Try a bigger range of days.** --- We set the minimum date range to 14. If the date range inputted by the user is smaller than this, the user will get this error message.
-
-**Either we failed to connect, or we have an unregistered ticker symbol.** --- This message occurs when the application is unable to connect to either Yahoo! Finance, or the Federal Reserve Bank of St. Louis to retrieve stock data, or when the ticker symbol provided in the `Symbol` field is not registered in the database. It could also be that no symbol was provided.
-
-**Failed to connect to database. Try again later.** --- This message occurs when the application fails to connect to SPY to retrieve data for the validated date range. Retrieving data from SPY is necessary for measuring the performance of a stock in the stock market.
-
 
