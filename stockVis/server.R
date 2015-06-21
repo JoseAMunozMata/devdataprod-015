@@ -6,6 +6,7 @@ source("helpers.R")
 shinyServer(function(input, output) {
   
   dataInput <- reactive({
+      
       validate (
         need(input$dates[2] >  input$dates[1], 
              "End date is earlier than start date, or start date is blank.")
