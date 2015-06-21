@@ -29,9 +29,7 @@ shinyUI(fluidPage(
       radioButtons("misc", "Extra Information",
                    c("Daily Returns" = "rets",
                      "SPY Correlation" = "vsap",
-                     "Autocorrelation Function" = "auto")),
-      
-      textInput("txt1", NULL, "Note: ACF works best with a small time frame. Why is this?")
+                     "Autocorrelation Function" = "auto"))
     ),
     
     mainPanel(plotOutput("plot1"),
