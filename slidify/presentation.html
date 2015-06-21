@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Working with stockVis</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Working with stockVis">
+  <meta name="author" content="Salma Rodriguez, Software Engineer">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlights.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Working with stockVis</h1>
+    <h2>Stock Visualization Made Easy</h2>
+    <p>Salma Rodriguez, Software Engineer<br/>International Business Machines</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>About stockVis</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The stockVis application allows the user to lookup stock prices pulled from Yahoo! Finance, and stock prices adjusted for inflation from the Federal Reserve Bank of St. Louis. The original application can be found in the Shiny tutorial at: <a href="http://shiny.rstudio.com/tutorial/lesson6/">http://shiny.rstudio.com/tutorial/lesson6/</a>.</p>
+
+<p>We have made some modifications to include a dotplot comparison of an equity to a widely known stock market index: SPY, as well as a plot to determine the Autocorrelation Function for a given stock.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>How to Use stockVis</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Retrieving Stock Information</h3>
+
+<p>The <code>Symbol</code> field is where the ticker symbol is specified. Input a valid ticker symbol from the New York Stock Exchange (NYSE), NASDAQ, or other quotation databases to view the price for that stock. After clicking on the <code>Date Range</code> field, you can specify dates for adjusted closing prices by selecting values from the pop up calendar. The <code>Get Stock</code> button retrieves information from the database, drawing a plot of the adjusted closing prices on the right hand panel. You can specify to plot the y axis of the timeseries plot on the log scale, or adjust prices for inflation, by selecting the corresponding checkboxes.</p>
+
+<h3>Retrieving Extra Information</h3>
+
+<p>You can plot the daily returns, compare the stock specified in the <code>Symbol</code> field against the market index, or analyze results from the Autocorrelation Function. All this can be done by selecting the corresponding checkbox. More information about this extra information is provided in the following slides.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Interpreting Results from the Extra Information</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Daily Returns</h3>
+
+<p>We used the following transformation on the daily price to compute the daily return:</p>
+
+<p>\[
+    R = 100\times{\left(\frac{P_t-P_{t-1}}{P_{t-1}}\right)} \approx 100\times{\log\left(\frac{P_t}{P_{t-1}}\right)}
+\]</p>
+
+<p>Here, \(R\) is the daily return, which we adjusted to be 100 times the closing price difference between today and yesterday, \(P_t-P_{t-1}\), over the closing price yesterday, \(P_{t-1}\). This is approximately 100 times the natural logarithm of the closing price quotient between today and yesterday when the return is small.</p>
+
+<h3>SPY Correlation</h3>
+
+<p>You can select <code>Compare Stock to SPY</code> to make a scatter plot of the equity against the SPY exchange traded fund for their respecitve daily returns. A regression line is added to the scatter plot in order to capture the correlation of daily returns. \(\beta\) is the correlation coefficient.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Interpreting Results from the Extra Information</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Autocorrelation</h3>
+
+<p>The autocorrelation function is a mathematical tool for finding repeating patterns in time series data. The dotted blue lines represent the confidence interval. Anything above or below the confidence interval would indicate a significant cross-correlation in the data. The definition of the autocorrelation between times <em>s</em> and <em>t</em> is given below:</p>
+
+<p>\[
+  R(s, t) = \frac{E[(X_t-\mu_t)(X_s-\mu_s)]}{\sigma_t\sigma_s}
+\]</p>
+
+<p>Here, \(\sigma_t\) is the standard deviation of the closing prices between time \(t\) and time \(s\), and \(\sigma_s\) is the standard deviation of the closing prices at an earlier time frame, ending at time \(s\). \(\mu_s\) and \(\mu_t\) are the average prices.</p>
+
+<p>\(E[(X_t-\mu_t){X_s-\mu_s)}]\) is the covariance between spot price \(X_s\) at time \(s\) and \(X_t\) at time \(t\).</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='About stockVis'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='How to Use stockVis'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Interpreting Results from the Extra Information'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Interpreting Results from the Extra Information'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title=''>
+         5
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+ 
+  </html>

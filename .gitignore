@@ -2,3 +2,4 @@ junk
 *.cache
 *.RData
 *.Rhistory
+rsconnect
