@@ -15,6 +15,8 @@ output        : html_document
 
 ## About stockVis
 
+Wouldn't it be cool to have a financial app to monitor the performance of a stock in your portfolio? Well, now you can! We introduce the one-of-a-kind stockVis!
+
 The stockVis application allows the user to look up stock prices pulled from Yahoo! Finance, and stock prices adjusted for inflation from the Federal Reserve Bank of St. Louis. The original application can be found in the Shiny tutorial at: http://shiny.rstudio.com/tutorial/lesson6/.
 
 We have made some modifications to include a dotplot comparison of an equity to a widely known stock market index: SPY, as well as a plot to determine the autocorrelation for a given stock. This modification is under `Extra Information`.
