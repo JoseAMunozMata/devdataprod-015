@@ -57,14 +57,14 @@ You can select `SPY Correlation` to make a scatter plot of the equity against th
 
 ### Autocorrelation Function
 
-The autocorrelation function is a mathematical tool for finding repeating patterns in time series data. The dotted blue lines generated in the stockVis plot after checking `Autocorrelation Function` represent the confidence interval. Anything above or below the confidence interval would indicate a significant cross-correlation in the data. The definition of the autocorrelation between times *s* and *t* is given below:
+The autocorrelation function is a mathematical tool for finding repeating patterns in time series data. The dotted blue lines generated in the stockVis plot after checking `Autocorrelation Function` represent the confidence interval. Anything above or below the confidence interval would indicate a significant cross-correlation in the data. The definition of the autocorrelation between time periods *s* and *t* is given below:
 
 $$
   R(s, t) = \frac{E[(X_t-\mu_t)(X_s-\mu_s)]}{\sigma_t\sigma_s}
 $$
 
-Here, $\sigma_t$ is the standard deviation of the closing prices between time $t$ and time $s$, and $\sigma_s$ is the standard deviation of the closing prices at an earlier time frame, ending at time $s$. $\mu_s$ and $\mu_t$ are the average prices.
+Here, $\sigma_t$ is the standard deviation of the closing prices at time period $t$, and $\sigma_s$ is the standard deviation of the closing prices at time period $s$. $\mu_s$ and $\mu_t$ are the average prices.
 
-$E[(X_t-\mu_t){X_s-\mu_s)}]$ is the covariance between spot price $X_s$ at time $s$ and spot price $X_t$ at time $t$.
+$E[(X_t-\mu_t){X_s-\mu_s)}]$ is the covariance between random variable $X_s$ at time $s$ and random variable $X_t$ at time $t$.
 
 
