@@ -65,6 +65,6 @@ $$
 
 Here, $\sigma_t$ is the standard deviation of the closing prices at time period $t$, and $\sigma_s$ is the standard deviation of the closing prices at time period $s$. $\mu_s$ and $\mu_t$ are the average prices.
 
-$E[(X_t-\mu_t){X_s-\mu_s)}]$ is the covariance between random variable $X_s$ at time $s$ and random variable $X_t$ at time $t$.
+$E[(X_t-\mu_t)(X_s-\mu_s)]$ is the covariance between random variable $X_s$ at time $s$ and random variable $X_t$ at time $t$.
 
 
