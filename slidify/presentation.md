@@ -45,7 +45,7 @@ $$
     R = 100\times{\left(\frac{P_t-P_{t-1}}{P_{t-1}}\right)} \approx 100\times{\log\left(\frac{P_t}{P_{t-1}}\right)}
 $$
 
-Here, $R$ is the daily return, which we computed as 100 times the closing price difference between today and yesterday, $P_t-P_{t-1}$, adjusted for cash dividends and splits, over the adjusted closing price yesterday, $P_{t-1}$. This is approximately 100 times the natural logarithm of the closing price quotient between today and yesterday when the return is small.
+Here, $R$ is the daily return, which we computed as the closing price difference between today and yesterday, $P_t-P_{t-1}$, adjusted for cash dividends and splits, over the adjusted closing price yesterday, $P_{t-1}$. We multiply by 100 to get the returns in cents. Th simple daily return is approximately equal to the continuously compounded daily return if the return is small.
 
 ### SPY Correlation
 
@@ -57,14 +57,35 @@ You can select `SPY Correlation` to make a scatter plot of the equity against th
 
 ### Autocorrelation Function
 
-The autocorrelation function is a mathematical tool for finding repeating patterns in time series data. The dotted blue lines generated in the stockVis plot after checking `Autocorrelation Function` represent the confidence interval. Anything above or below the confidence interval would indicate a significant cross-correlation in the data. The definition of the autocorrelation between time periods *s* and *t* is given below:
+The autocorrelation function is a mathematical tool for finding repeating patterns in time series data. The dotted blue lines generated in the stockVis plot after checking `Autocorrelation Function` represent the confidence interval. Anything above or below the confidence interval would indicate a significant cross-correlation in the data. The autocorrelation between time periods *s* and *t* can be represented as follows:
 
 $$
-  R(s, t) = \frac{E[(X_t-\mu_t)(X_s-\mu_s)]}{\sigma_t\sigma_s}
+  R(s, t) = \frac{E[(X_t-\mu_t)(X_s-\mu_s)]}{\sigma_t\sigma_s} (1)
 $$
 
-Here, $\sigma_t$ is the standard deviation of the closing prices at time period $t$, and $\sigma_s$ is the standard deviation of the closing prices at time period $s$. $\mu_s$ and $\mu_t$ are the average prices.
+Here, $\sigma_t$ is the standard deviation of the closing prices at time period $t$, and $\sigma_s$ is the standard deviation of the closing prices at time period $s$. $\mu_s$ and $\mu_t$ are the arithmetic mean of the prices.
 
 $E[(X_t-\mu_t)(X_s-\mu_s)]$ is the covariance between random variable $X_s$ at time $s$ and random variable $X_t$ at time $t$.
 
+---
 
+## Interpreting Results from the Extra Information
+
+### Autocorrelation Function
+
+There is no guarantee that stock prices are correlated from one day to the next, even less so from one second to the next, but if we want an autoregressive process that is ergodic, and furthermore, covariance stationary, (1) on the previous slide becomes the AR Model:
+
+$$
+  Y_t-\mu = \phi(Y_{t-1}-\mu)+\epsilon_t, -1 \lt \phi \lt 1 \\
+  \epsilon_t \approx iid\ N(0, \sigma^2_\epsilon)
+$$
+
+This makes the covariance between two time periods that are an arbitrary distance apart equal to the following:
+
+$$
+  cov(Y_t, Y_{t-1}) = \gamma_j = \sigma^2\phi^j
+$$
+
+Here, $\sigma^2 = \sigma^2_\epsilon/(1-\phi^2)$, which is the variance at time period $Y_t$, and $j$ is the time lag. This process is ergodic, and therefore, we have a decaying time dependence as $j$ gets larger.
+
+The correlation between $Y_t$ and $Y_{t-1}$ is $\phi^j$ for lag $j$, and the expected value of $Y_t$, $E[Y_t]$ is $\mu$.
