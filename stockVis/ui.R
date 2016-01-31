@@ -1,38 +1,54 @@
 library(shiny)
 
-shinyUI(fluidPage(
-  titlePanel("stockVis"),
+shinyUI(navbarPage(
+  titlePanel("PepViz"),
+  tabPanel("Basics",
   
   sidebarLayout(
+    
     sidebarPanel(
-      helpText("Select a stock to examine. 
-        Information will be collected from yahoo finance."),
+        helpText("Select a stock to examine. 
+                  Information will be collected from yahoo finance."),
     
-      textInput("symb", "Symbol", "SPY"),
+        textInput("sym1", "Symbol", "AAPL"),
     
-      dateRangeInput("dates", 
-        "Date Range",
-        start = "2013-01-01", 
-        end = as.character(Sys.Date())),
+        dateRangeInput("dates","Date Range",
+                       start = "2013-01-01",
+                       end = as.character(Sys.Date())),
    
-      actionButton("get", "Get Stock"),
+        actionButton("get", "Get Stock"),
       
-      br(),
-      br(),
+        br(),br(),
       
-      checkboxInput("log", "Plot y axis on log scale", 
-        value = FALSE),
+        checkboxInput("log", "Plot y axis on log scale", 
+                      value = FALSE),
       
-      checkboxInput("adjust", 
-        "Adjust prices for inflation", value = FALSE),
-      
-      radioButtons("misc", "Extra Information",
-                   c("Daily Returns" = "rets",
-                     "SPY Correlation" = "vsap",
-                     "Autocorrelation Function" = "auto"))
+        checkboxInput("adjust", 
+                      "Adjust prices for inflation", value = FALSE)
     ),
     
-    mainPanel(plotOutput("plot1"),
-              plotOutput("plot2"))
-  )
-))
+    mainPanel(plotOutput("plot1"))
+  )),
+  
+  tabPanel("Extra",
+           sidebarPanel(
+                        radioButtons("misc", "Advanced Plots",
+                                     c("Daily Returns" = "rets",
+                                     "SPY Correlation" = "vsap",
+                                    "Autocorrelation Function" = "auto"))),
+             
+           mainPanel(plotOutput("plot2"),
+                        plotOutput("plot3"))
+  ),
+  tabPanel("Advanced",
+            sidebarPanel(
+                        sliderInput("tbill", "T-bill Rate", 
+                                    min = 0.1,
+                                    max = 0.9,
+                                    value = 0.3,
+                                    format = "#.##"),
+                        textInput("sym2", "Symbol 1", "AAPL"),
+                        textInput("sym3", "Symbol 2", "GOOGL")),
+           
+           mainPanel(plotOutput("plot4"))
+  )))
