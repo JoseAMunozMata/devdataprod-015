@@ -201,7 +201,7 @@ shinyServer(function(input, output) {
           
           sigma2_portfolio <- stock1weights^2*sigma2_annual[1] + 
                               stock2weights^2*sigma2_annual[2] +
-                              stock1weights*stock2weights*cov_hat_annual
+                            2*stock1weights*stock2weights*cov_hat_annual
           sigma_portfolio <- sqrt(sigma2_portfolio)
           
           # compute tangency portfolio
