@@ -50,7 +50,7 @@ shinyServer(function(input, output) {
                  "The date range is less the 14 days. Try a bigger range of days.")
           )
           
-          data <- try(getSymbols(input$sym2, input$sym3, src = "yahoo", 
+          data <- try(getSymbols(input$sym2, src = "yahoo", 
                                  from = input$dates[1],
                                  to = input$dates[2],
                                  auto.assign = FALSE)     )
