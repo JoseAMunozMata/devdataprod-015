@@ -136,7 +136,7 @@ shinyServer(function(input, output) {
                   "Failed to connect to database. Try again later.")
       )
       
-      getret(data[, 6] )
+      dailyReturn(data[, 6] )
   })
       
   output$plot1 <- renderPlot({
@@ -188,7 +188,9 @@ shinyServer(function(input, output) {
           sigma2_annual <- apply(monthly_all,2,var )*nrow(monthly_all)
           
           sigma_annual <- sqrt(sigma2_annual)
+          
           cov_mat_annual <- cov(monthly_all)*nrow(monthly_all)
+          cov_hat_annual <- cov(monthly_all)[1,2]*nrow(monthly_all)
           
           # construct portfolio with two assets
           
@@ -196,8 +198,10 @@ shinyServer(function(input, output) {
           stock2weights <- 1 - stock1weights
           
           mu_portfolio <-  stock1weights*mu_hat_annual[1] + stock2weights*mu_hat_annual[2]
-          sigma2_portfolio <- stock1weights*sigma2_annual[1] + stock2weights*sigma2_annual[2]
           
+          sigma2_portfolio <- stock1weights^2*sigma2_annual[1] + 
+                              stock2weights^2*sigma2_annual[2] +
+                              stock1weights*stock2weights*cov_hat_annual
           sigma_portfolio <- sqrt(sigma2_portfolio)
           
           # compute tangency portfolio

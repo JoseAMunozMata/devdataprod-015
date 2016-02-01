@@ -43,9 +43,10 @@ shinyUI(navbarPage(
   tabPanel("Advanced",
             sidebarPanel(
                         sliderInput("tbill", "T-bill Rate", 
-                                    min = 0.1,
-                                    max = 0.9,
-                                    value = 0.3,
+                                    min = 0.01,
+                                    max = 0.09,
+                                    step = 0.01,
+                                    value = 0.03,
                                     format = "#.##"),
                         textInput("sym2", "Symbol 1", "AAPL"),
                         textInput("sym3", "Symbol 2", "GOOGL")),
